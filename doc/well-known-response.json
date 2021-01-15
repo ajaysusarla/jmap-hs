@@ -1,0 +1,85 @@
+{
+  "apiUrl": "https://jmap.fastmail.com/api/",
+  "state": "cyrus-1889632;p-5;vfs-109",
+  "eventSourceUrl": "https://jmap.fastmail.com/event/",
+  "accounts": {
+    "uxxxxxxxx": {
+      "isPersonal": false,
+      "isReadOnly": false,
+      "accountCapabilities": {
+        "urn:ietf:params:jmap:mail": {
+          "maxMailboxDepth": null,
+          "maxSizeAttachmentsPerEmail": 50000000,
+          "emailQuerySortOptions": [
+            "receivedAt",
+            "from",
+            "to",
+            "subject",
+            "size",
+            "header.x-spam-score"
+          ],
+          "mayCreateTopLevelMailbox": false,
+          "maxSizeMailboxName": 490,
+          "maxMailboxesPerEmail": 1000
+        }
+      },
+      "isArchiveUser": false,
+      "name": "foo@something.com"
+    },
+    "uyyyyyyyy": {
+      "isArchiveUser": false,
+      "name": "foo@example.com",
+      "accountCapabilities": {
+        "urn:ietf:params:jmap:vacationresponse": {},
+        "urn:ietf:params:jmap:mail": {
+          "mayCreateTopLevelMailbox": true,
+          "maxSizeMailboxName": 490,
+          "maxMailboxesPerEmail": 1000,
+          "maxMailboxDepth": null,
+          "emailQuerySortOptions": [
+            "receivedAt",
+            "from",
+            "to",
+            "subject",
+            "size",
+            "header.x-spam-score"
+          ],
+          "maxSizeAttachmentsPerEmail": 50000000
+        },
+        "urn:ietf:params:jmap:submission": {
+          "maxDelayedSend": 44236800,
+          "submissionExtensions": []
+        }
+      },
+      "isReadOnly": false,
+      "isPersonal": true
+    },
+  },
+  "username": "foo@example.com",
+  "downloadUrl": "https://jmap.fastmail.com/download/{accountId}/{blobId}/{name}",
+  "uploadUrl": "https://jmap.fastmail.com/upload/{accountId}/",
+  "capabilities": {
+    "urn:ietf:params:jmap:core": {
+      "maxObjectsInSet": 1000,
+      "maxConcurrentRequests": 10,
+      "maxSizeRequest": 10000000,
+      "maxSizeUpload": 250000000,
+      "maxCallsInRequest": 64,
+      "collationAlgorithms": [
+        "i;ascii-numeric",
+        "i;ascii-casemap",
+        "i;octet"
+      ],
+      "maxConcurrentUpload": 10,
+      "maxObjectsInGet": 1000
+    },
+    "urn:ietf:params:jmap:submission": {},
+    "urn:ietf:params:jmap:mail": {},
+    "urn:ietf:params:jmap:vacationresponse": {}
+  },
+  "primaryAccounts": {
+    "urn:ietf:params:jmap:vacationresponse": "uyyyyyyyy",
+    "urn:ietf:params:jmap:submission": "uyyyyyyyy",
+    "urn:ietf:params:jmap:mail": "uyyyyyyyy"
+  }
+}

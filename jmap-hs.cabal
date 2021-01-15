@@ -1,0 +1,92 @@
+cabal-version: 2.2
+
+name:           jmap-hs
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/ajaysusarla/jmap-hs#readme>
+homepage:       https://github.com/ajaysusarla/jmap-hs#readme
+bug-reports:    https://github.com/ajaysusarla/jmap-hs/issues
+author:         Partha Susarla
+maintainer:     code@spartha.org
+copyright:      Copyright: (c) 2002-2021 Partha Susarla
+license:        BSD-3-Clause
+license-file:   LICENSE
+build-type:     Simple
+stability:      Experimental
+extra-source-files:
+                   README.md
+                   examples/*.hs
+                   stack.yaml
+
+source-repository head
+  type: git
+  location: https://github.com/ajaysusarla/jmap-hs
+
+common base-settings
+  ghc-options:         -Wall
+  default-language:    Haskell2010
+  default-extensions:  OverloadedStrings
+  build-depends:
+      aeson
+    , base >=4.7 && <5
+    , bytestring
+    , containers
+    , lens
+    , lens-aeson
+    , pretty-show
+    , text
+    , wreq >=0.5.3 && <0.5.4
+  other-modules:
+
+library
+  import:              base-settings
+  hs-source-dirs:      src
+  exposed-modules:      Lib.Prelude
+                      , Network.JMAP
+
+test-suite jmap-hs-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+  hs-source-dirs:
+      test
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      aeson
+    , base >=4.7 && <5
+    , bytestring
+    , containers
+    , jmap-hs
+    , lens
+    , lens-aeson
+    , pretty-show
+    , text
+    , wreq >=0.5.3 && <0.5.4
+  default-language: Haskell2010
+
+Flag examples
+  Description: Build the examples
+  Default: False
+  Manual: True
+
+common examples-settings
+  ghc-options:         -Wall -threaded -rtsopts -with-rtsopts=-N
+  default-language:    Haskell2010
+  default-extensions:  OverloadedStrings
+  build-depends:       base >= 4.7 && < 5
+                     , pretty-show
+                     , jmap-hs
+                     , text
+  hs-source-dirs:      examples
+  other-modules: Utils
+  if !flag(examples)
+    buildable: False
+
+executable GetSession
+  import:              examples-settings
+  scope:               private
+  main-is:             GetSession.hs
+
+executable GetAccountIdAndApiURL
+  import:              examples-settings
+  scope:               private
+  main-is:             GetAccountIdAndApiURL.hs
