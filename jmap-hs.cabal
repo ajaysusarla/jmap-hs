@@ -40,8 +40,7 @@ common base-settings
 library
   import:              base-settings
   hs-source-dirs:      src
-  exposed-modules:      Lib.Prelude
-                      , Network.JMAP
+  exposed-modules:     Network.JMAP
 
 test-suite jmap-hs-test
   type: exitcode-stdio-1.0
