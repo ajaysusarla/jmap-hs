@@ -6,9 +6,20 @@ module Network.JMAP.Types.Internal where
 import Network.JMAP.Types.Base
 import qualified Data.Text as T
 
-
+--
+-- Constants
+--
 urlWellKnown::T.Text
 urlWellKnown = "/.well-known/jmap"
+
+vacationRespURN::T.Text
+vacationRespURN = "urn:ietf:params:jmap:vacationresponse"
+
+submissionURN::T.Text
+submissionURN = "urn:ietf:params:jmap:submission"
+
+mailURN::T.Text
+mailURN = "urn:ietf:params:jmap:mail"
 
 data ConnectionType =
     ConnectHTTPS Bool

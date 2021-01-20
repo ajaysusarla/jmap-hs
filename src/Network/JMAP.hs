@@ -10,35 +10,16 @@ module Network.JMAP
   , renderLoginError
   ) where
 
-import Control.Lens ((&), (^.), (^?), (.~), (?~))
-import Data.Aeson (FromJSON, Value)
+import Control.Lens ((&), (^.), (?~))
 import Data.Aeson.Lens (key, _String)
-import Data.Map (Map, lookup)
-import Data.Text (Text, unpack)
-import Data.ByteString
-import GHC.Generics (Generic)
-import qualified Control.Exception as E
+import Data.Text (unpack)
 import qualified Data.Text.Encoding as TE
 
 import Network.Wreq
 
 import Network.JMAP.Exceptions
-import Network.JMAP.Util
-import Network.JMAP.Types.Base
 import Network.JMAP.Types.Internal
 import Network.JMAP.Types
-
-
---
--- Constants
---
-vacationRespURN::Text
-submissionURN::Text
-mailURN::Text
-
-vacationRespURN = "urn:ietf:params:jmap:vacationresponse"
-submissionURN = "urn:ietf:params:jmap:submission"
-mailURN = "urn:ietf:params:jmap:mail"
 
 -- Authenticate to server
 jmapAuth :: ConnectionData -> Login -> IO (Either LoginFailureException Session)

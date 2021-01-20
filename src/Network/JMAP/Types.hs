@@ -2,8 +2,12 @@ module Network.JMAP.Types
   ( module Network.JMAP.Types
   , module Network.JMAP.Types.Base
   , ConnectionType(..)
-  , authURL
   , ServerBaseURL(..)
+  , authURL
+  , mailURN
+  , submissionURN
+  , vacationRespURN
+  , urlWellKnown
   ) where
 
 
