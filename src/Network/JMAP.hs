@@ -35,57 +35,10 @@ import Network.JMAP.Types
 vacationRespURN::Text
 submissionURN::Text
 mailURN::Text
-urlWellknown::String
 
 vacationRespURN = "urn:ietf:params:jmap:vacationresponse"
 submissionURN = "urn:ietf:params:jmap:submission"
 mailURN = "urn:ietf:params:jmap:mail"
-
-urlWellknown = "https://jmap.fastmail.com/.well-known/jmap"
-
-data GetBody = GetBody
-  {
-    primaryAccounts :: Map Text Text
-  , state :: Text
-  , apiUrl :: Text
-  , eventSourceUrl :: Text
-  , downloadUrl :: Text
-  , uploadUrl :: Text
-  } deriving (Show, Generic)
-
-instance FromJSON GetBody
-
---
--- JSON interfaces
---
-getSessionJSON :: Data.ByteString.ByteString -> Data.ByteString.ByteString -> IO (Response GetBody)
-getSessionJSON u p = asJSON =<< getWith opts urlWellknown
-  where
-    opts = defaults & auth ?~ basicAuth u p
-
--- Get accountId from a JSON response body
-getMailAccountId :: (Response GetBody) -> Maybe Text
-getMailAccountId r = Data.Map.lookup (mailURN::Text) $ (primaryAccounts (r ^. responseBody))
-
--- Get apiUrl
-getApiUrl :: (Response GetBody) -> Text --TODO: Convert to Maybe
-getApiUrl r = (apiUrl (r ^. responseBody))
---
--- Value interfaces
---
-getSessionValue :: Data.ByteString.ByteString -> Data.ByteString.ByteString -> IO (Response Value)
-getSessionValue u p = asValue =<< getWith opts urlWellknown
-  where
-    opts = defaults & auth ?~ basicAuth u p
-
--- Get accountId from a value response body
-getMailAccountId' :: (Response Value) -> Text
-getMailAccountId' r = r ^. responseBody . key "primaryAccounts" . key mailURN . _String
-
--- Get apiUrl
-getApiUrl' :: (Response Value) -> Text
-getApiUrl' r = r ^. responseBody . key "apiUrl" . _String
-
 
 -- Authenticate to server
 jmapAuth :: ConnectionData -> Login -> IO (Either LoginFailureException Session)
