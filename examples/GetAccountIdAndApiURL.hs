@@ -3,8 +3,6 @@
 module Main (main) where
 
 import Network.JMAP
-import qualified Data.Text.Encoding as TE
-
 import Utils
 
 main :: IO ()

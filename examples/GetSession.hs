@@ -4,7 +4,6 @@ module Main (main) where
 
 import Network.JMAP
 import Text.Show.Pretty (pPrint)
-import qualified Data.Text.Encoding as TE
 
 import Utils
 
