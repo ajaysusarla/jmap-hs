@@ -30,17 +30,25 @@ common base-settings
     , base >=4.7 && <5
     , bytestring
     , containers
+    , gitrev
+    , template-haskell
     , lens
     , lens-aeson
     , pretty-show
     , text
     , wreq >=0.5.3 && <0.5.4
-  other-modules:
+  other-modules: Paths_jmap_hs
 
 library
   import:              base-settings
   hs-source-dirs:      src
   exposed-modules:     Network.JMAP
+                       Network.JMAP.Exceptions
+                       Network.JMAP.Types
+                       Network.JMAP.Types.Base
+                       Network.JMAP.Types.Internal
+                       Network.JMAP.Util
+                       Network.JMAP.Version
 
 test-suite jmap-hs-test
   type: exitcode-stdio-1.0
